@@ -117,7 +117,7 @@ data$f2 = as.factor(data$f2)
 data$rt = as.numeric(data$rt)
 data$word_num = as.numeric(data$word_num) + 1 # Start word numbers from 1
 data = data %>% filter(!(rt < MIN_RT | rt > MAX_RT)) # Remove outliers
-data = droplevels(subset(data, (correct =="yes"))) ## remove wrong answers
+data = droplevels(subset(data, (correct =="yes"))) %>% distinct() ## remove wrong answers and duplicate rows
 data$rt = log(data$rt) # Log RT
 data_target = droplevels(subset(data, (word %in% F2_LEVELS))) # Get target region (YOU EDIT)
 
